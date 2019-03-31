@@ -41,5 +41,42 @@ namespace HotelWebProject.Areas.WebHotelManage.Controllers
                 return Content("<script>alert('新闻发布失败!');location.href='" + Url.Action("NewsPublish") + "'</script>");
             }
         }
+        /// <summary>
+        /// 显示新闻列表
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult NewsManager()
+        {
+            List<News> newsList = new NewsManager().GetNews(50);
+            ViewBag.newsList = newsList;
+            return View();
+        }
+        /// <summary>
+        /// 显示要修改的新闻详细信息
+        /// </summary>
+        /// <param name="newsId"></param>
+        /// <returns></returns>
+        public ActionResult ShowNewsDetail(int newsId)
+        {
+            //获取要修改的新闻对象
+            News news = new NewsManager().GetNewsById(newsId);
+
+            //获取信息分类集合列表
+            List<NewsCategory> categoryList = new NewsManager().GetAllCategory();
+            SelectList list = new SelectList(categoryList,"CategoryId","CategoryName",news.CategoryId);
+            ViewBag.dlist = list;
+            return View("NewsUpdate",news);
+        }
+        /// <summary>
+        /// 提交修改新闻
+        /// </summary>
+        /// <returns></returns>
+        [ValidateInput(false)]
+        public ActionResult UpdateNews(News news)
+        {
+            news.PublishTime = DateTime.Now;
+            int result = new NewsManager().ModifyNews(news);
+            
+        }
     }
 }

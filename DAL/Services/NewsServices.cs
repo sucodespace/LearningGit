@@ -67,8 +67,31 @@ namespace DAL
         {
             using (HotelDBEntities db=new HotelDBEntities())
             {
-                return (from n in db.News orderby n.PublishTime descending select n).Take(count).ToList();
+                //return (from n in db.News orderby n.PublishTime descending select n).Take(count).ToList();
+                var newsList= (from n in db.News orderby n.PublishTime descending select new
+                {
+                    n.NewsId,
+                    n.NewsTitle,
+                    n.PublishTime,
+                    n.CategoryId,
+                    n.NewsContents,
+                    n.NewsCategory.CategoryName
+                }).Take(count);
+                List<News> list = new List<News>();
+                foreach (var item in newsList)
+                {
+                    list.Add(new News{
+                        NewsId=item.NewsId,
+                        NewsTitle=item.NewsTitle,
+                        PublishTime=item.PublishTime,
+                        CategoryId=item.CategoryId,
+                        NewsContents=item.NewsContents,
+                        NewsCategory=new NewsCategory { CategoryName = item.CategoryName }                        
+                    });
+                }
+                return list;
             }
+            
         }
 
         /// <summary>
