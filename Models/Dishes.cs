@@ -11,7 +11,8 @@ namespace Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations.Schema;
+
     public partial class Dishes
     {
         public int DishesId { get; set; }
@@ -20,5 +21,12 @@ namespace Models
         public Nullable<int> CategoryId { get; set; }
     
         public virtual DishesCategory DishesCategory { get; set; }
+
+        //非EF映射属性,后台执行操作的时候,该NotMapped特性,会告诉orm框架,该属性不参与
+        [NotMapped]
+        public string DishesImg
+        {
+            get { return this.DishesId.ToString() + ".png"; }
+        }
     }
 }

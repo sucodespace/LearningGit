@@ -11,11 +11,18 @@ namespace Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel;
+    using System.ComponentModel.DataAnnotations;
+
     public partial class SysAdmins
     {
+        [DisplayName("登陆账号")]
+        [Required(ErrorMessage = "{0}不能为空")]
+        [RegularExpression(@"^-?[1-9]+[0-9]*$", ErrorMessage = "请输入正确的{0}")]
         public int LoginId { get; set; }
         public string LoginName { get; set; }
+        [DisplayName("登陆密码")]
+        [Required(ErrorMessage = "{0}不能为空")]
         public string LoginPwd { get; set; }
     }
 }

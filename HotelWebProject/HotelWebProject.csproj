@@ -123,6 +123,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Areas\WebHotelManage\Css\Images\default.png" />
+    <Content Include="Areas\WebHotelManage\Css\Images\loginimg.jpg" />
+    <Content Include="Areas\WebHotelManage\Css\Images\navbg_ht.jpg" />
+    <Content Include="Areas\WebHotelManage\Css\Images\topbg_ht.png" />
+    <Content Include="Areas\WebHotelManage\Css\ManageLayout.css" />
     <Content Include="Global.asax" />
     <Content Include="Images\bg.jpg" />
     <Content Include="Images\dishes\1.png" />
@@ -186,6 +191,11 @@
     <Content Include="scripts\ai.0.22.9-build00167.js" />
     <Content Include="scripts\ai.0.22.9-build00167.min.js" />
     <Content Include="scripts\jquery-1.4.1.min.js" />
+    <Content Include="Areas\WebHotelManage\Views\web.config" />
+    <Content Include="Areas\WebHotelManage\Views\Shared\ManageLayout.cshtml" />
+    <Content Include="Areas\WebHotelManage\Views\SysAdmin\AdminLogin.cshtml" />
+    <Content Include="Areas\WebHotelManage\Views\SysAdmin\AdminMain.cshtml" />
+    <Content Include="Areas\WebHotelManage\Views\News\NewsPublish.cshtml" />
     <None Include="scripts\jquery-1.8.2.intellisense.js" />
     <Content Include="scripts\jquery-1.8.2.js" />
     <Content Include="scripts\jquery-1.8.2.min.js" />
@@ -407,13 +417,17 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Data\App_Start\RouteConfig.cs" />
+    <Compile Include="Areas\WebHotelManage\Controllers\NewsController.cs" />
+    <Compile Include="Areas\WebHotelManage\Controllers\SysAdminController.cs" />
+    <Compile Include="Areas\WebHotelManage\WebHotelManageAreaRegistration.cs" />
     <Compile Include="Controllers\CompanyController.cs" />
     <Compile Include="Controllers\DishesController.cs" />
     <Compile Include="Controllers\NewsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Handler\CheckData.ashx.cs" />
     <Compile Include="Models\CreateValidateCode.cs" />
     <Compile Include="Models\UtilityHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -437,6 +451,16 @@
     <Content Include="Views\Company\Index.cshtml" />
     <Content Include="Views\Shared\HotelMain.cshtml" />
     <Content Include="Views\Company\ComDesc.cshtml" />
+    <Content Include="Views\News\NewsList.cshtml" />
+    <Content Include="Views\News\NewsDetail.cshtml" />
+    <Content Include="Views\Dishes\DishesShow.cshtml" />
+    <Content Include="Views\Company\AboutUs.cshtml" />
+    <Content Include="Views\Company\Environment.cshtml" />
+    <Content Include="Views\Company\JoinUs.cshtml" />
+    <Content Include="Views\Company\RecruitmentList.cshtml" />
+    <Content Include="Views\Company\RecruitmentDetail.cshtml" />
+    <Content Include="Views\Dishes\DishesBook.cshtml" />
+    <Content Include="Views\Company\Suggestions.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -445,9 +469,8 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App_Data\" />
-    <Folder Include="Views\Dishes\" />
-    <Folder Include="Views\News\" />
+    <Folder Include="Areas\WebHotelManage\Models\" />
+    <Folder Include="Views\Home\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BLL\BLL.csproj">
